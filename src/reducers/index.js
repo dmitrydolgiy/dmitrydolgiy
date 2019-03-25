@@ -1,12 +1,34 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
-import { increment, decrement } from '../actions';
+import { onTaskValueChange, onRemoveTask, onAddTask, onDoneTask } from '../actions';
 
-const counter = handleActions({
-    [increment]: (state, { payload: { increase } }) => state + increase,
-    [decrement]: (state, { payload: { decrease } }) => state - decrease,
-}, 0);
+const currentTaskValue = handleActions({
+  [onTaskValueChange]: (state, { payload: { value } }) => value,
+  [onAddTask]: () => '',
+}, '');
+
+const activeStateButton = handleActions({
+  [onTaskValueChange]: (state, { payload: { value } }) => !Boolean(value),
+}, true);
+
+const listOfTasks = handleActions({
+  [onRemoveTask]: (state, { payload: { id } }) =>
+    state.filter(task => task.id !== id),
+
+  [onDoneTask]: (state, { payload: { id } }) =>
+    state.map(task => task.id === id
+      ? { ...task, state: !task.state }
+      : task),
+
+  [onAddTask]: (state, { payload: { task } }) => [...state, {
+    task,
+    state: false,
+    id: Math.round(Math.random() * 100)
+  }],
+}, []);
 
 export default combineReducers({
-    counter,
-})
+  listOfTasks,
+  currentTaskValue,
+  activeStateButton,
+});
