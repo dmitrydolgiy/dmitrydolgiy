@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 import ItemList from './ItemList';
 import axios from 'axios';
 import './App.css';
@@ -24,11 +25,11 @@ class App extends Component {
     } = this.props;
 
     return (
-      <div className='global-wrapper-fragment'>
+      <div className={ this.props.classes.paper }>
         <TextField
           type='text'
           autoFocus
-          className='task-text-field'
+          className={ this.props.classes.input }
           value={ currentTaskValue }
           placeholder='Enter new task..'
           onChange={ ({ target: { value } }) => onTaskValueChange({ value }) }
@@ -36,7 +37,7 @@ class App extends Component {
 
         <Button
           color='primary'
-          className='add-button'
+          className={ this.props.classes.button }
           disabled={ activeStateButton }
           onClick={ () => onAddTask({ task: currentTaskValue }) }
           variant='contained'>
@@ -49,4 +50,20 @@ class App extends Component {
   }
 }
 
-export default App;
+const styles = theme => ({
+  paper: {
+    padding: theme.spacing.unit * 3,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    flex: '1 0 auto',
+    margin: theme.spacing.unit * 10,
+  },
+  input: {
+    width: 180,
+  },
+  button: {
+    marginLeft: 20,
+  }
+});
+
+export default withStyles(styles)(App);

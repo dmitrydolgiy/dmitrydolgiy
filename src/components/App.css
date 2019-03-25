@@ -1,23 +1,28 @@
-.global-wrapper-fragment {
-    display: block;
-    margin: 200px 500px;
-}
-
-.global-wrapper-fragment .add-button {
-    margin-left: 40px;
-}
-
-.global-wrapper-fragment .task-text-field {
-    margin-top: 5px;
-}
-
 .anim-appear {
     opacity: 0.01;
 }
 
 .anim-appear.anim-appear-active {
     opacity: 1;
-    transition: opacity 2s ease-in;
+    transition: opacity 1.5s ease-in;
+}
+
+.example-enter {
+    opacity: 0.01;
+}
+
+.anim-enter.anim-enter-active {
+    opacity: 1;
+    transition: opacity 1.5ms ease-in;
+}
+
+.anim-leave {
+    opacity: 1;
+}
+
+.anim-leave.anim-leave-active {
+    opacity: 0.01;
+    transition: opacity 1.5ms ease-in;
 }
 
 .item-list {
