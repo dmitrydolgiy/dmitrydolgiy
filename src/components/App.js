@@ -25,26 +25,29 @@ class App extends Component {
     } = this.props;
 
     return (
-      <div className={ this.props.classes.paper }>
-        <TextField
-          type='text'
-          autoFocus
-          className={ this.props.classes.input }
-          value={ currentTaskValue }
-          placeholder='Enter new task..'
-          onChange={ ({ target: { value } }) => onTaskValueChange({ value }) }
-          onKeyPress={ ({ key }) => key === 'Enter' ? onAddTask({ task: currentTaskValue }) : null } />
+      <div className='task-app'>
+        <div className={ this.props.classes.paper }>
+          <TextField
+            type='text'
+            autoFocus
+            className={ this.props.classes.input }
+            value={ currentTaskValue }
+            placeholder='Enter new task..'
+            onChange={ ({ target: { value } }) => onTaskValueChange({ value }) }
+            onKeyPress={ ({ key }) => key === 'Enter' ? onAddTask({ task: currentTaskValue }) : null } />
 
-        <Button
-          color='primary'
-          className={ this.props.classes.button }
-          disabled={ activeStateButton }
-          onClick={ () => onAddTask({ task: currentTaskValue }) }
-          variant='contained'>
-          Add
-        </Button>
+          <Button
+            color='primary'
+            className={ this.props.classes.button }
+            disabled={ activeStateButton }
+            onClick={ () => onAddTask({ task: currentTaskValue }) }
+            variant='contained'>
+            Add
+          </Button>
 
-        <ItemList className='item-list' tasks={ listOfTasks } onRemoveItem={ onRemoveTask } onDoneTask={ onDoneTask } />
+          <ItemList className='item-list' tasks={ listOfTasks } onRemoveItem={ onRemoveTask }
+                    onDoneTask={ onDoneTask } />
+        </div>
       </div>
     );
   }
@@ -52,11 +55,12 @@ class App extends Component {
 
 const styles = theme => ({
   paper: {
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit,
     textAlign: 'center',
     color: theme.palette.text.secondary,
     flex: '1 0 auto',
-    margin: theme.spacing.unit * 10,
+    margin: theme.spacing.unit,
+    zIndex: 9999,
   },
   input: {
     width: 180,

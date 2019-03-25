@@ -28,3 +28,13 @@
 .item-list {
     margin-left: 20px;
 }
+
+.task-app {
+    z-index: 99999;
+    position: fixed;
+    left: 38%;
+    top: 20%;
+    background: white;
+    margin: 0;
+    padding: 0;
+}
