@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
+import { capitalize } from 'lodash';
 import { handleActions } from 'redux-actions';
 import { onTaskValueChange, onRemoveTask, onAddTask, onDoneTask, initSuccessListOfTask } from '../actions';
 
 const currentTaskValue = handleActions({
-  [onTaskValueChange]: (state, { payload: { value } }) => value,
+  [onTaskValueChange]: (state, { payload: { value } }) => capitalize(value),
   [onAddTask]: () => '',
 }, '');
 
