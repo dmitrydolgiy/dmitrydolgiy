@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
-import { onTaskValueChange, onRemoveTask, onAddTask, onDoneTask } from '../actions';
+import { onTaskValueChange, onRemoveTask, onAddTask, onDoneTask, initSuccessListOfTask } from '../actions';
 
 const currentTaskValue = handleActions({
   [onTaskValueChange]: (state, { payload: { value } }) => value,
@@ -9,9 +9,12 @@ const currentTaskValue = handleActions({
 
 const activeStateButton = handleActions({
   [onTaskValueChange]: (state, { payload: { value } }) => !Boolean(value),
+  [onAddTask]: () => true,
 }, true);
 
 const listOfTasks = handleActions({
+  [initSuccessListOfTask]: (state, { payload: { tasks } }) => tasks,
+
   [onRemoveTask]: (state, { payload: { id } }) =>
     state.filter(task => task.id !== id),
 
