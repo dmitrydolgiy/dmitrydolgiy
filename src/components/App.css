@@ -1,6 +1,6 @@
 .global-wrapper-fragment {
     display: block;
-    margin: 200px  500px;
+    margin: 200px 500px;
 }
 
 .global-wrapper-fragment .add-button {
@@ -9,4 +9,17 @@
 
 .global-wrapper-fragment .task-text-field {
     margin-top: 5px;
+}
+
+.anim-appear {
+    opacity: 0.01;
+}
+
+.anim-appear.anim-appear-active {
+    opacity: 1;
+    transition: opacity 2s ease-in;
+}
+
+.item-list {
+    margin-left: 20px;
 }

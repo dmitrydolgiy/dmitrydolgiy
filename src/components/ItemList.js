@@ -4,6 +4,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const styles = theme => ({
   root: {
@@ -14,8 +15,8 @@ const styles = theme => ({
   },
   icon: {
     padding: 0,
-    marginLeft: -15,
-    marginTop: 8,
+    marginLeft: -10,
+    marginTop: 6,
   },
   input: {
     cursor: 'pointer',
@@ -39,13 +40,16 @@ class ItemList extends Component {
     return tasks.map(({ task, state, id }) => {
       return (
         <div className={ classes.icon } key={ id }>
-          <Checkbox className={ classes.label }
-                    checked={ state } color='primary'
-                    onClick={ () => this.onDoneTask(id) } />
-          <InputBase value={ task } className={ state ? classes.input : null } />
-          <IconButton onClick={ () => this.onRemoveButton(id) }>
-            <DeleteIcon className={ classes.root } />
-          </IconButton>
+          <ReactCSSTransitionGroup transitionName="anim" transitionAppear={ true } transitionAppearTimeout={ 5000 }
+                                   transitionEnter={ true } transitionLeave={ true }>
+            <Checkbox className={ classes.label }
+                      checked={ state } color='primary'
+                      onClick={ () => this.onDoneTask(id) } />
+            <InputBase value={ task } className={ state ? classes.input : null } />
+            <IconButton onClick={ () => this.onRemoveButton(id) }>
+              <DeleteIcon className={ classes.root } />
+            </IconButton>
+          </ReactCSSTransitionGroup>
         </div>
       );
     });

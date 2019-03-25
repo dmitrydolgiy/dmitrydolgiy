@@ -43,7 +43,7 @@ class App extends Component {
           Add
         </Button>
 
-        <ItemList tasks={ listOfTasks } onRemoveItem={ onRemoveTask } onDoneTask={ onDoneTask } />
+        <ItemList className='item-list' tasks={ listOfTasks } onRemoveItem={ onRemoveTask } onDoneTask={ onDoneTask } />
       </div>
     );
   }
