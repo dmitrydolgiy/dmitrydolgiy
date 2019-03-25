@@ -27,6 +27,7 @@ class App extends Component {
       <div className='global-wrapper-fragment'>
         <TextField
           type='text'
+          autoFocus
           className='task-text-field'
           value={ currentTaskValue }
           placeholder='Enter new task..'
