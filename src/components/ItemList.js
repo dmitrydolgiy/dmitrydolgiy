@@ -26,12 +26,12 @@ const styles = theme => ({
 
 
 class ItemList extends Component {
-  onRemoveButton = id => {
-    this.props.onRemoveItem({ id });
+  onRemoveTask = id => {
+    this.props.onRemoveTask({ id });
   };
 
-  onDoneTask = id => {
-    this.props.onDoneTask({ id });
+  onUpdateTask = (id, state) => {
+    this.props.onUpdateTask({ id, state });
   };
 
   render() {
@@ -51,11 +51,11 @@ class ItemList extends Component {
 
             <Checkbox className={ classes.label }
                       checked={ state } color='primary'
-                      onClick={ () => this.onDoneTask(id) } />
+                      onClick={ () => this.onUpdateTask(id, !state) } />
 
             <InputBase value={ task } className={ state ? classes.input : null } />
 
-            <IconButton onClick={ () => this.onRemoveButton(id) }>
+            <IconButton onClick={ () => this.onRemoveTask(id) }>
               <DeleteIcon className={ classes.root } />
             </IconButton>
 

@@ -15,13 +15,15 @@ class App extends Component {
 
   render() {
     const {
-      onAddTask,
-      onDoneTask,
       listOfTasks,
-      onRemoveTask,
+      taskValueChange,
       currentTaskValue,
       activeStateButton,
-      onTaskValueChange,
+
+      onSaveTask,
+      onRemoveTask,
+      onUpdateTask,
+
     } = this.props;
 
     return (
@@ -33,20 +35,23 @@ class App extends Component {
             className={ this.props.classes.input }
             value={ currentTaskValue }
             placeholder='Enter new task..'
-            onChange={ ({ target: { value } }) => onTaskValueChange({ value }) }
-            onKeyPress={ ({ key }) => key === 'Enter' ? onAddTask({ task: currentTaskValue }) : null } />
+            onChange={ ({ target: { value } }) => taskValueChange({ value }) }
+            onKeyPress={ ({ key }) => key === 'Enter' ? onSaveTask({ task: currentTaskValue }) : null } />
 
           <Button
             color='primary'
             className={ this.props.classes.button }
             disabled={ activeStateButton }
-            onClick={ () => onAddTask({ task: currentTaskValue }) }
+            onClick={ () => onSaveTask({ task: currentTaskValue }) }
             variant='contained'>
             Add
           </Button>
 
-          <ItemList className='item-list' tasks={ listOfTasks } onRemoveItem={ onRemoveTask }
-                    onDoneTask={ onDoneTask } />
+          <ItemList
+            className='item-list'
+            tasks={ listOfTasks }
+            onRemoveTask={ onRemoveTask }
+            onUpdateTask={ onUpdateTask } />
         </div>
       </div>
     );
