@@ -7,6 +7,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const styles = theme => ({
+  common: {
+    position: 'relative', top: 2,
+  },
   root: {
     color: theme.palette.text.primary
   },
@@ -21,7 +24,10 @@ const styles = theme => ({
   input: {
     cursor: 'pointer',
     textDecoration: 'line-through',
-  }
+    position: 'relative',
+    top: 2,
+  },
+
 });
 
 
@@ -53,7 +59,7 @@ class ItemList extends Component {
                       checked={ state } color='primary'
                       onClick={ () => this.onUpdateTask(id, !state) } />
 
-            <InputBase value={ task } className={ state ? classes.input : null } />
+            <InputBase value={ task } className={ state ? classes.input : classes.common } />
 
             <IconButton onClick={ () => this.onRemoveTask(id) }>
               <DeleteIcon className={ classes.root } />

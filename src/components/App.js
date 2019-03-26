@@ -9,8 +9,10 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
-    axios.get('https://5c99023942365600143931e4.mockapi.io/api/v1/tasks')
-      .then(({ data }) => this.props.initSuccessListOfTask({ tasks: data }));
+    setInterval(async () => {
+      const { data } = await axios.get('https://5c99023942365600143931e4.mockapi.io/api/v1/tasks');
+      this.props.initSuccessListOfTask({ tasks: data });
+    }, 2000);
   }
 
   render() {
