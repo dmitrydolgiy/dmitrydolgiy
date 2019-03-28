@@ -32,11 +32,8 @@
 .task-app {
     z-index: 999;
     position: absolute;
-    left: 42%;
+    left: 27%;
     top: 20%;
-    background: white;
-    margin: 0;
-    padding: 0;
 }
 
 body {
