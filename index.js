@@ -11,7 +11,7 @@
     opts = { //Options, you can change those
       backgroundColor: "#222",
       particleColor: "#fcfcfc",
-      particleAmount: 60,
+      particleAmount: 50,
       defaultSpeed: 1,
       addedSpeed: 2,
 
