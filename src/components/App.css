@@ -29,11 +29,8 @@
     margin-left: 20px;
 }
 
-.task-app {
-    z-index: 999;
-    position: absolute;
-    left: 27%;
-    top: 20%;
+#main-page {
+    /*min-height: 40%;*/
 }
 
 body {

@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import QuoteMediaCard from './QuoteMediaCard';
+import QuoteMediaCard from './QuoteMedaCard/QuoteMediaCard';
 import { withStyles } from '@material-ui/core/styles';
-import ItemList from './ItemList';
+import ItemList from './ItemList/ItemList';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
+import Menu from './Menu/Menu';
+import { withCookies } from 'react-cookie';
+
 import './App.css';
 
 class App extends Component {
   state = { quote: {} };
 
   async componentDidMount() {
-    setInterval(async () => {
-      const { data } = await axios.get('https://5c99023942365600143931e4.mockapi.io/api/v1/tasks');
-      this.props.initSuccessListOfTask({ tasks: data });
-    }, 2000);
+    if (!this.props.cookies.get('authToken')) this.props.history.push('/login');
+
+    const { data } = await axios.get('https://5c99023942365600143931e4.mockapi.io/api/v1/tasks');
+    this.props.initSuccessListOfTask({ tasks: data });
+
     const { data: { author, quote } } = await axios.get('https://random-math-quote-api.herokuapp.com/');
-    console.log(author, quote);
     this.setState({ quote: { author, quote } });
   }
 
@@ -33,14 +36,20 @@ class App extends Component {
       onSaveTask,
       onRemoveTask,
       onUpdateTask,
-
     } = this.props;
 
     return (
-      <div className='task-app'>
-        <Grid container spacing={ 24 }>
+      <div id='main-page' className={ classes.root }>
+        <Menu pageWrapId={ 'main-page-wrap' } outerContainerId={ 'main-page' } />
+        <Grid
+          id='main-page-wrap'
+          container
+          direction="row"
+          justify="center"
+          // alignItems="center"
+          spacing={ 24 }>
 
-          <Grid item xs={ 6 }>
+          <Grid item xs={ 12 } sm={ 6 }>
             <Paper className={ classes.paper }>
               <TextField
                 type='text'
@@ -83,19 +92,20 @@ class App extends Component {
 
 const styles = theme => ({
   root: {
-    flexGrow: 5,
+    flexGrow: 1,
   },
   quote: {
-    padding: 3,
-    color: theme.palette.text.secondary,
-    marginLeft: 50,
+    padding: theme.spacing.unit,
+    margin: theme.spacing.unit * 4,
+    maxWidth: 300,
   },
   paper: {
-    marginRight: 50,
-    padding: 25,
+    padding: theme.spacing.unit,
+    margin: theme.spacing.unit * 4,
+    maxWidth: 300,
     color: theme.palette.text.secondary,
-    flex: '1 0 auto',
-    margin: theme.spacing.unit,
+    marginLeft: 95,
+    textAlign: 'center',
     zIndex: 9999,
   },
   input: {
@@ -106,4 +116,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(App);
+export default withCookies(withStyles(styles)(App));
