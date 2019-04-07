@@ -103,7 +103,7 @@ function checkValidServiceWorker(swUrl) {
     })
     .catch(() => {
       console.log(
-        'No internet connection found. MainPage is running in offline mode.'
+        'No internet connection found. MainPageContainer is running in offline mode.'
       );
     });
 }

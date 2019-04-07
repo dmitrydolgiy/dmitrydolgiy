@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
+import { auth } from './auth';
 import formReducer from './formReducer';
 import { listOfTasks, currentTaskValue, activeStateButton } from './toDoList';
 
 export default combineReducers({
-  form: formReducer,
+  auth,
   listOfTasks,
+  form: formReducer,
   currentTaskValue,
   activeStateButton,
 });
