@@ -8,12 +8,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import App from './components/App/App';
+import { loadingBarMiddleware } from 'react-redux-loading-bar';
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk, loadingBarMiddleware())));
 
 const user = localStorage.getItem('user');
+
 if (user) {
-  console.log(user);
   store.dispatch(authenticated());
 }
 
